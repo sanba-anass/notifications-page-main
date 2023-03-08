@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- displays site properly based on user's device -->
+
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="./assets/images/favicon-32x32.png"
+		/>
+
+		<title>Frontend Mentor | Notifications page</title>
+		<link rel="stylesheet" href="./style.css" />
+	</head>
+	<body>
+		<div class="container-2">
+			<main class="container">
+				<header>
+					<div class="notif-title">
+						<h1>Notifications</h1>
+						<div class="notif-count">3</div>
+					</div>
+					<div class="btns">
+						<button id="toggle-btn">
+							<div class="thumb"></div>
+						</button>
+						<button id="mark-button">Mark all as read</button>
+					</div>
+				</header>
+				<div class="notifications">
+					<figure class="user-notif">
+						<div class="user-img">
+							<img src="./assets/images/avatar-mark-webber.webp" alt="" />
+						</div>
+						<figcaption>
+							<div class="user-activity">
+								<span class="user-name">Mark Webber</span>
+								<span class="activity-text">reacted to your recent post</span>
+								<span class="reaction-target">My first tournament today!</span>
+								<span class="badge"></span>
+							</div>
+							<div class="notif-time">1m ago</div>
+						</figcaption>
+					</figure>
+					<figure class="user-notif">
+						<div class="user-img">
+							<img src="./assets/images/avatar-angela-gray.webp" alt="" />
+						</div>
+						<figcaption>
+							<div class="user-activity">
+								<span class="user-name">Angela Gray</span>
+								<span class="activity-text">followed you</span>
+								<span class="badge"></span>
+							</div>
+							<div class="notif-time">5m ago</div>
+						</figcaption>
+					</figure>
+					<figure class="user-notif">
+						<div class="user-img">
+							<img src="./assets/images/avatar-jacob-thompson.webp" alt="" />
+						</div>
+						<figcaption>
+							<div class="user-activity">
+								<span class="user-name">Jacob Thompson</span>
+								<span class="activity-text">has joined your group</span>
+								<span class="reaction-target">Chess Club</span>
+								<span class="badge"></span>
+							</div>
+							<div class="notif-time">1 day ago</div>
+						</figcaption>
+					</figure>
+					<figure class="user-notif user-notif-inactive">
+						<div class="user-img">
+							<img src="./assets/images/avatar-rizky-hasanuddin.webp" alt="" />
+						</div>
+						<figcaption>
+							<div class="user-activity">
+								<span class="user-name">Rizky Hasanuddin</span>
+								<span class="activity-text"> sent you a private message</span>
+							</div>
+							<div class="notif-time">5 day ago</div>
+						</figcaption>
+						<div class="user-icon">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke-width="1.5"
+								stroke="currentColor"
+								class="w-6 h-6"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+								/>
+							</svg>
+						</div>
+					</figure>
+					<p class="hide message">
+						Hello, thanks for setting up the Chess Club. I've been a member for
+						a few weeks now and I'm already having lots of fun and improving my
+						game
+					</p>
+					<figure class="user-notif user-notif-inactive">
+						<div class="user-img">
+							<img src="./assets/images/avatar-kimberly-smith.webp" alt="" />
+						</div>
+						<figcaption>
+							<div class="user-activity">
+								<span class="user-name">Kimberly Smith</span>
+								<span class="activity-text">commented on your picture</span>
+							</div>
+
+							<div class="notif-time">1 week ago</div>
+						</figcaption>
+						<div class="picture">
+							<img src="./assets/images/image-chess.webp" alt="" />
+						</div>
+					</figure>
+					<figure class="user-notif user-notif-inactive">
+						<div class="user-img">
+							<img src="./assets/images/avatar-nathan-peterson.webp" alt="" />
+						</div>
+						<figcaption>
+							<div class="user-activity">
+								<span class="user-name">Nathan Peterson</span>
+								<span class="activity-text"> reacted to your recent post</span>
+								<span class="reaction-target">
+									5 end-game strategies to increase your win rate</span
+								>
+							</div>
+							<div class="notif-time">2 week ago</div>
+						</figcaption>
+					</figure>
+					<figure class="user-notif user-notif-inactive">
+						<div class="user-img">
+							<img src="./assets/images/avatar-anna-kim.webp" alt="" />
+						</div>
+						<figcaption>
+							<div class="user-activity">
+								<span class="user-name">Anna Kim</span>
+								<span class="activity-text"> left the group</span>
+								<span class="reaction-target">Chess Club</span>
+							</div>
+							<div class="notif-time">2 week ago</div>
+						</figcaption>
+					</figure>
+				</div>
+			</main>
+		</div>
+		<script>
+			const userNotif = document.querySelectorAll(".user-notif");
+			const badges = document.querySelectorAll(".user-notif .badge");
+			const markButton = document.getElementById("mark-button");
+			const notifCount = document.querySelector(".notif-count");
+			const toggleBtn = document.getElementById("toggle-btn");
+			const container = document.getElementById(".container");
+			const userIcon = document.querySelector(".user-icon");
+			const message = document.querySelector(".message");
+			const thumb = document.querySelector(".thumb");
+			userIcon.addEventListener("click", (e) => {
+				message.classList.toggle("hide");
+				userIcon.classList.toggle("rotate-45");
+			});
+			function changeColor(variable, clr) {
+				document.documentElement.style.setProperty(variable, clr);
+			}
+			function applyDarkMode() {
+				thumb.classList.add("animate-x");
+				changeColor("--White", "#121212");
+				changeColor("--Very-dark-blue", "hsl(0, 0%, 100%)");
+				changeColor("--Very-light-grayish-blue", "#1E1E1E");
+				changeColor("--Dark-grayish-blue", "#919191");
+				changeColor("--Grayish-blue", "#727272");
+				changeColor("--Light-grayish-blue-2", "#383838");
+				changeColor("--Blue", "#97D8FD");
+			}
+			function applyLightMode() {
+				thumb.classList.remove("animate-x");
+				changeColor("--White", "hsl(0, 0%, 100%)");
+				changeColor("--Very-dark-blue", "hsl(224, 21%, 14%)");
+				changeColor("--Very-light-grayish-blue", "hsl(210, 60%, 98%)");
+				changeColor("--Dark-grayish-blue", "hsl(219, 12%, 42%)");
+				changeColor("--Grayish-blue", "hsl(219, 14%, 63%)");
+				changeColor("--Light-grayish-blue-2", "hsl(205, 33%, 90%)");
+				changeColor("--Blue", "hsl(219, 85%, 26%)");
+			}
+			toggleBtn.addEventListener("click", function (e) {
+				if (thumb.classList.contains("animate-x")) {
+					localStorage.setItem("isDark", "false");
+					applyLightMode();
+				} else {
+					localStorage.setItem("isDark", "true");
+					applyDarkMode();
+				}
+			});
+			if (localStorage.getItem("isDark") === "true") {
+				applyDarkMode();
+			} else {
+				applyLightMode();
+			}
+			markButton.addEventListener("click", function () {
+				if (markButton.textContent == "Mark all as read") {
+					markButton.textContent = "Mark as unread";
+					notifCount.textContent = "0";
+				} else {
+					markButton.textContent = "Mark all as read";
+					notifCount.textContent = "3";
+				}
+				Array.from(userNotif)
+					.slice(0, 3)
+					.forEach((notif) => {
+						if (notif.style.background != "none") {
+							notif.style.background = "none";
+						} else {
+							notif.style.background = "var(--Very-light-grayish-blue)";
+						}
+					});
+				badges.forEach((badge) => {
+					if (badge.style.display != "none") {
+						badge.style.display = "none";
+					} else {
+						badge.style.display = "inline-block";
+					}
+				});
+			});
+		</script>
+	</body>
+</html>
+<!-- Notifications 3
+
+  Mark all as read
+
+  Mark Webber reacted to your recent post My first tournament today!
+  1m ago
+
+  Angela Gray followed you
+  5m ago
+
+  Jacob Thompson has joined your group Chess Club
+  1 day ago
+
+  Rizky Hasanuddin sent you a private message
+  5 days ago
+  Hello, thanks for setting up the Chess Club. I've been a member for a few weeks now and 
+  I'm already having lots of fun and improving my game.
+
+  Kimberly Smith commented on your picture
+  1 week ago
+
+  Nathan Peterson reacted to your recent post 5 end-game strategies to increase your win rate
+  2 weeks ago
+
+  Anna Kim left the group Chess Club
+  2 weeks ago -->
